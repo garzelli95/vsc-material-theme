@@ -46,6 +46,15 @@ export type ThemeSetting = {
       brown: string;
       pink: string;
       violet: string;
+      teal: string;
+    };
+    alt: {
+      teal: string;
+      green: string;
+      turquoise: string;
+      emerald: string;
+      forest: string;
+      pink: string;
     };
   };
 };

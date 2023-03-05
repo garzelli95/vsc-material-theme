@@ -8,11 +8,11 @@ export const getColorSet = (theme: ThemeSetting): IColorSet => {
       // Determines the overall background color
       background: theme.scheme.background,
       // Determines boolean, identifier, keyword, storage, and cssClass
-      color1: theme.scheme.base.red,
+      color1: theme.scheme.base.purple,
       // Determines string, stringEscape, and cssId
       color2: theme.scheme.base.green,
       // Determines function, class, classMember, type, and cssTag
-      color3: theme.scheme.base.yellow,
+      color3: theme.scheme.base.blue,
       // Determines functionCall and number
       color4: theme.scheme.base.blue,
       // Determines the overall text foreground color
@@ -23,55 +23,92 @@ export const getColorSet = (theme: ThemeSetting): IColorSet => {
     * by the theme generator
     */
     syntax: {
-      boolean: theme.scheme.base.pink,
-      class: theme.scheme.base.yellow,
-      classMember: theme.scheme.base.red,
-      comment: theme.scheme.comments,
-      cssClass: theme.scheme.base.yellow,
       cssId: theme.scheme.base.orange,
-      cssProperties: theme.scheme.base.paleblue,
+      cssProperties: theme.scheme.base.cyan,
       cssTag: theme.scheme.base.yellow,
+      cssClass: theme.scheme.base.yellow,
+      keyword: theme.scheme.base.purple,
+      otherKeyword: theme.scheme.base.purple,
+      storage: theme.scheme.base.purple,
+      identifier: theme.scheme.base.red,
+      classMember: theme.scheme.base.red,
+      class: theme.scheme.base.purple,
+      type: theme.scheme.base.purple,
       function: theme.scheme.base.blue,
       functionCall: theme.scheme.base.blue,
-      identifier: theme.scheme.base.red,
-      keyword: theme.scheme.base.cyan,
-      storage: theme.scheme.base.purple,
       string: theme.scheme.base.green,
-      stringEscape: theme.scheme.foreground,
-      type: theme.scheme.base.yellow,
+      stringEscape: theme.scheme.alt.emerald,
+      boolean: theme.scheme.base.orange,
+      number: theme.scheme.base.orange,
       punctuation: theme.scheme.base.cyan,
-      otherKeyword: theme.scheme.base.orange,
-      variable: theme.scheme.foreground,
-      number: theme.scheme.base.orange
+      comment: theme.scheme.comments,
+      variable: theme.scheme.foreground
     },
     /**
     * Override all syntax tokens
     */
     customTokens: [
       {
-        name: 'Markup Deleted',
+        name: 'General - Highlight placeholders in strings',
         scope: [
-          'markup.deleted'
+          'constant.other.placeholder'
+        ],
+        settings: {
+          foreground: theme.scheme.alt.emerald
+          // == syntax.stringEscape,
+        }
+      },
+      {
+        name: 'General - Orange constants',
+        scope: [
+          'constant.language'
+        ],
+        settings: {
+          foreground: theme.scheme.base.orange
+          // == syntax.number,
+          // == syntax.boolean,
+        }
+      },
+      {
+        name: 'Misc - Yellow Classes/Structs/Interfaces',
+        scope: [
+          'entity.name.type.go',
+          'meta.class entity.name.type.class',
+          'entity.name.type.class.java',
+          'entity.other.inherited-class.java'
+        ],
+        settings: {
+          foreground: theme.scheme.base.yellow
+        }
+      },
+      {
+        name: 'Misc - Red exceptions',
+        scope: [
+          'support.type.exception',
+          'meta.method.java meta.throwables.java storage.type',
+          'meta.catch.parameters.java storage.type.java'
         ],
         settings: {
           foreground: theme.scheme.base.red
         }
       },
       {
-        name: 'Markup Inserted',
+        name: 'Misc - Import Keyword',
         scope: [
-          'markup.inserted'
+          'keyword.control.import.python'
         ],
         settings: {
-          foreground: theme.scheme.base.green
+          foreground: theme.scheme.base.purple
         }
       },
       {
-        name: 'Markup Underline',
+        name: 'Misc - Imported Packages/Modules',
         scope: [
-          'markup.underline'
+          'entity.name.import',
+          'storage.modifier.import.java'
         ],
         settings: {
+          foreground: theme.scheme.foreground,
           fontStyle: 'underline'
         }
       },
@@ -81,8 +118,16 @@ export const getColorSet = (theme: ThemeSetting): IColorSet => {
           'keyword.control'
         ],
         settings: {
-          foreground: theme.scheme.base.cyan,
-          fontStyle: 'italic'
+          foreground: theme.scheme.base.yellow
+        }
+      },
+      {
+        name: 'Keyword Operator',
+        scope: [
+          'keyword.operator'
+        ],
+        settings: {
+          foreground: theme.scheme.base.cyan
         }
       },
       {
@@ -92,6 +137,53 @@ export const getColorSet = (theme: ThemeSetting): IColorSet => {
         ],
         settings: {
           fontStyle: 'italic'
+        }
+      },
+      {
+        name: 'Go - Bold Functions and Type Definitions',
+        scope: [
+          'entity.name.function.go',
+          'entity.name.class.go',
+          'entity.name.type.go'
+        ],
+        settings: {
+          fontStyle: 'bold'
+        }
+      },
+      {
+        name: 'Java - Bold Classes',
+        scope: [
+          'entity.name.type.class.java'
+        ],
+        settings: {
+          fontStyle: 'bold'
+        }
+      },
+      {
+        name: 'Java - Purple Constructor Calls',
+        scope: [
+          'meta.function-call.java entity.name.function'
+        ],
+        settings: {
+          foreground: theme.scheme.base.purple
+        }
+      },
+      {
+        name: 'Java - this',
+        scope: [
+          'variable.language.this.java'
+        ],
+        settings: {
+          foreground: theme.scheme.base.red
+        }
+      },
+      {
+        name: 'Java - new',
+        scope: [
+          'keyword.control.new.java'
+        ],
+        settings: {
+          foreground: theme.scheme.base.cyan
         }
       },
       {
@@ -110,7 +202,121 @@ export const getColorSet = (theme: ThemeSetting): IColorSet => {
           'constant.character.format.placeholder.other.python'
         ],
         settings: {
+          foreground: theme.scheme.alt.emerald
+        }
+      },
+      {
+        name: 'Python - Function Call',
+        scope: [
+          'meta.function-call.generic.python',
+          'meta.function-call.python',
+          'support.function.builtin.python'
+        ],
+        settings: {
+          foreground: theme.scheme.base.blue
+        }
+      },
+      {
+        name: 'Python - Normal inside f-strings and function calls',
+        scope: [
+          'meta.function-call.arguments.python'
+        ],
+        settings: {
+          foreground: theme.scheme.foreground
+        }
+      },
+      {
+        name: 'Python - Special variables like __name__',
+        scope: [
+          'support.variable.magic.python'
+        ],
+        settings: {
           foreground: theme.scheme.base.orange
+        }
+      },
+      {
+        name: 'Shell - Variables in Strings and Subcommands',
+        scope: [
+          'string.quoted.double.shell variable',
+          'meta.command.shell variable.other.normal.shell'
+        ],
+        settings: {
+          foreground: theme.scheme.alt.emerald
+        }
+      },
+      {
+        name: 'Shell - Command Name (including built-in)',
+        scope: [
+          'meta.command.shell entity.name.command.shell',
+          'support.function.builtin.shell'
+        ],
+        settings: {
+          foreground: theme.scheme.base.blue
+        }
+      },
+      {
+        name: 'Shell - Options',
+        scope: [
+          'meta.command.shell constant.other.option'
+        ],
+        settings: {
+          foreground: theme.scheme.base.yellow
+        }
+      },
+      {
+        name: 'Shell - Subcommands',
+        scope: [
+          'meta.command.shell string.unquoted.argument.shell'
+        ],
+        settings: {
+          foreground: theme.scheme.foreground
+        }
+      },
+      {
+        name: 'Shell - Positional Parameters',
+        scope: [
+          'variable.parameter.positional.shell',
+          'variable.parameter.positional.all.shell'
+        ],
+        settings: {
+          foreground: theme.scheme.base.red
+        }
+      },
+      {
+        name: 'Shell - Special Variables',
+        scope: [
+          'variable.language.special.shell'
+        ],
+        settings: {
+          foreground: theme.scheme.base.red
+        }
+      },
+      {
+        name: 'Shell - Math Strings',
+        scope: [
+          'string.other.math.shell',
+          'string.other.math.shell constant.numeric'
+        ],
+        settings: {
+          foreground: theme.scheme.foreground
+        }
+      },
+      {
+        name: 'Shell - Line-Continuation Backslash',
+        scope: [
+          'constant.character.escape.line-continuation.shell'
+        ],
+        settings: {
+          foreground: theme.scheme.base.yellow
+        }
+      },
+      {
+        name: 'TOML - Table Properties',
+        scope: [
+          'support.type.property-name.table.toml'
+        ],
+        settings: {
+          foreground: theme.scheme.base.cyan
         }
       },
       {
@@ -138,7 +344,34 @@ export const getColorSet = (theme: ThemeSetting): IColorSet => {
           'punctuation.definition.quote'
         ],
         settings: {
-          foreground: theme.scheme.base.pink
+          foreground: theme.scheme.alt.pink
+        }
+      },
+      {
+        name: 'Markup Deleted',
+        scope: [
+          'markup.deleted'
+        ],
+        settings: {
+          foreground: theme.scheme.base.red
+        }
+      },
+      {
+        name: 'Markup Inserted',
+        scope: [
+          'markup.inserted'
+        ],
+        settings: {
+          foreground: theme.scheme.base.green
+        }
+      },
+      {
+        name: 'Markup Underline',
+        scope: [
+          'markup.underline'
+        ],
+        settings: {
+          fontStyle: 'underline'
         }
       },
       {
@@ -183,7 +416,7 @@ export const getColorSet = (theme: ThemeSetting): IColorSet => {
           'meta.structure.dictionary.json meta.structure.dictionary.value.json meta.structure.dictionary.json meta.structure.dictionary.value.json meta.structure.dictionary.json meta.structure.dictionary.value.json meta.structure.dictionary.json meta.structure.dictionary.value.json meta.structure.dictionary.json support.type.property-name.json'
         ],
         settings: {
-          foreground: theme.scheme.base.brown
+          foreground: theme.scheme.base.blue
         }
       },
       {
@@ -192,7 +425,7 @@ export const getColorSet = (theme: ThemeSetting): IColorSet => {
           'meta.structure.dictionary.json meta.structure.dictionary.value.json meta.structure.dictionary.json meta.structure.dictionary.value.json meta.structure.dictionary.json meta.structure.dictionary.value.json meta.structure.dictionary.json meta.structure.dictionary.value.json meta.structure.dictionary.json meta.structure.dictionary.value.json meta.structure.dictionary.json support.type.property-name.json'
         ],
         settings: {
-          foreground: theme.scheme.base.blue
+          foreground: theme.scheme.base.purple
         }
       },
       {
@@ -201,7 +434,7 @@ export const getColorSet = (theme: ThemeSetting): IColorSet => {
           'meta.structure.dictionary.json meta.structure.dictionary.value.json meta.structure.dictionary.json meta.structure.dictionary.value.json meta.structure.dictionary.json meta.structure.dictionary.value.json meta.structure.dictionary.json meta.structure.dictionary.value.json meta.structure.dictionary.json meta.structure.dictionary.value.json meta.structure.dictionary.json meta.structure.dictionary.value.json meta.structure.dictionary.json support.type.property-name.json'
         ],
         settings: {
-          foreground: theme.scheme.base.pink
+          foreground: theme.scheme.base.yellow
         }
       },
       {
@@ -210,7 +443,7 @@ export const getColorSet = (theme: ThemeSetting): IColorSet => {
           'meta.structure.dictionary.json meta.structure.dictionary.value.json meta.structure.dictionary.json meta.structure.dictionary.value.json meta.structure.dictionary.json meta.structure.dictionary.value.json meta.structure.dictionary.json meta.structure.dictionary.value.json meta.structure.dictionary.json meta.structure.dictionary.value.json meta.structure.dictionary.json meta.structure.dictionary.value.json meta.structure.dictionary.json meta.structure.dictionary.value.json meta.structure.dictionary.json support.type.property-name.json'
         ],
         settings: {
-          foreground: theme.scheme.base.purple
+          foreground: theme.scheme.base.orange
         }
       },
       {
@@ -219,7 +452,7 @@ export const getColorSet = (theme: ThemeSetting): IColorSet => {
           'meta.structure.dictionary.json meta.structure.dictionary.value.json meta.structure.dictionary.json meta.structure.dictionary.value.json meta.structure.dictionary.json meta.structure.dictionary.value.json meta.structure.dictionary.json meta.structure.dictionary.value.json meta.structure.dictionary.json meta.structure.dictionary.value.json meta.structure.dictionary.json meta.structure.dictionary.value.json meta.structure.dictionary.json meta.structure.dictionary.value.json meta.structure.dictionary.json meta.structure.dictionary.value.json meta.structure.dictionary.json support.type.property-name.json'
         ],
         settings: {
-          foreground: theme.scheme.base.green
+          foreground: theme.scheme.base.red
         }
       }
     ],
@@ -227,6 +460,14 @@ export const getColorSet = (theme: ThemeSetting): IColorSet => {
     * Overrides workbench UI Elements
     */
     workbench: {
+      /**
+      * Brackets
+      */
+      'editorBracketHighlight.foreground1': theme.scheme.base.blue, // == entity.name.function
+      'editorBracketHighlight.foreground2': theme.scheme.base.purple, // == storage.type
+      'editorBracketHighlight.foreground3': theme.scheme.base.yellow,
+      'editorBracketHighlight.foreground4': theme.scheme.base.orange,
+      'editorBracketHighlight.foreground5': theme.scheme.base.red,
       /**
       * General elements style
       */
@@ -253,7 +494,6 @@ export const getColorSet = (theme: ThemeSetting): IColorSet => {
       * Buttons style
       */
       'button.background': theme.scheme.selection,
-      // 'button.hoverBackground': theme.scheme.shade2,
       /**
       * Links style
       */
@@ -271,7 +511,6 @@ export const getColorSet = (theme: ThemeSetting): IColorSet => {
       'sideBarTitle.foreground': theme.scheme.foreground,
       'sideBarSectionHeader.background': theme.scheme.backgroundAlt,
       'sideBarSectionHeader.border': `${theme.scheme.contrastBorder}60`,
-      // "sideBarSectionHeader.foreground": theme.scheme.foreground,
       /**
       * Window panels style (terminal, global search)
       */
@@ -305,10 +544,6 @@ export const getColorSet = (theme: ThemeSetting): IColorSet => {
       // Editor tab groups
       'editorGroupHeader.tabsBackground': theme.scheme.background,
       'editorGroup.border': theme.scheme.shadow,
-      // Editor gutter
-      'editorGutter.modifiedBackground': `${theme.scheme.base.blue}60`,
-      'editorGutter.addedBackground': `${theme.scheme.base.green}60`,
-      'editorGutter.deletedBackground': `${theme.scheme.base.red}60`,
       /**
       * Activity bar style
       */
@@ -329,7 +564,6 @@ export const getColorSet = (theme: ThemeSetting): IColorSet => {
       /**
       * Extensions badge style
       */
-      // 'extensionBadge.remoteBackground': theme.scheme.shade3,
       'extensionBadge.remoteForeground': theme.scheme.foreground,
       /**
       * Scrollbar style
@@ -349,7 +583,6 @@ export const getColorSet = (theme: ThemeSetting): IColorSet => {
       'tab.activeBackground': theme.scheme.background,
       'tab.unfocusedActiveForeground': theme.scheme.foreground,
       'tab.border': theme.scheme.background,
-      // 'tab.inactiveModifiedBorder': theme.scheme.shade5,
       /**
       * Editor overlay widgets style (find/replace..)
       */
@@ -415,7 +648,6 @@ export const getColorSet = (theme: ThemeSetting): IColorSet => {
       'input.foreground': theme.scheme.foreground,
       'input.placeholderForeground': `${theme.scheme.foreground}60`,
       'input.border': theme.scheme.inputBorder,
-
       /**
       * Inputs validation style
       */
@@ -445,7 +677,6 @@ export const getColorSet = (theme: ThemeSetting): IColorSet => {
       'quickInput.list.focusBackground': `${theme.scheme.foreground}20`,
       'list.focusForeground': theme.scheme.foreground,
       'list.highlightForeground': theme.scheme.defaultAccent,
-      // 'list.dropBackground': theme.scheme.shade2,
       /**
       * Editor suggest widget style
       */
@@ -458,7 +689,7 @@ export const getColorSet = (theme: ThemeSetting): IColorSet => {
       * Editor diff editor style
       */
       'diffEditor.insertedTextBackground': `${theme.scheme.base.cyan}20`,
-      'diffEditor.removedTextBackground': `${theme.scheme.base.pink}20`,
+      'diffEditor.removedTextBackground': `${theme.scheme.alt.pink}20`,
       /**
       * Notifications
       */
@@ -484,13 +715,17 @@ export const getColorSet = (theme: ThemeSetting): IColorSet => {
       'peekViewEditor.matchHighlightBackground': theme.scheme.selection,
       'peekViewResult.selectionBackground': `${theme.scheme.sidebarForeground}70`,
       /**
-      * GIT decorations style
+      * GIT decorations style in sidebar or tab
       */
-      'gitDecoration.deletedResourceForeground': `${theme.scheme.base.red}90`,
-      'gitDecoration.conflictingResourceForeground': `${theme.scheme.base.yellow}90`,
-      'gitDecoration.modifiedResourceForeground': `${theme.scheme.base.blue}90`,
-      'gitDecoration.untrackedResourceForeground': `${theme.scheme.base.green}90`,
-      'gitDecoration.ignoredResourceForeground': `${theme.scheme.sidebarForeground}90`,
+      'gitDecoration.deletedResourceForeground': `${theme.scheme.base.red}`,
+      'gitDecoration.conflictingResourceForeground': `${theme.scheme.base.yellow}`,
+      'gitDecoration.modifiedResourceForeground': `${theme.scheme.base.blue}`,
+      'gitDecoration.untrackedResourceForeground': `${theme.scheme.alt.emerald}`,
+      'gitDecoration.ignoredResourceForeground': `${theme.scheme.sidebarForeground}`,
+      // Editor gutter
+      'editorGutter.modifiedBackground': `${theme.scheme.base.blue}60`,
+      'editorGutter.addedBackground': `${theme.scheme.alt.emerald}90`,
+      'editorGutter.deletedBackground': `${theme.scheme.base.red}60`,
       /**
       * Breadcrumb style
       */
@@ -581,7 +816,7 @@ export const getColorSet = (theme: ThemeSetting): IColorSet => {
       // Highlights text inside selected area
       selectionHighlight: `${theme.scheme.base.yellow}50`,
       // When the cursor is on a symbol, highlights places that symbol is read
-      wordHighlight: `${theme.scheme.base.pink}30`,
+      wordHighlight: `${theme.scheme.alt.pink}30`,
       // When the cursor is on a symbol, highlights places that symbol is written
       wordHighlightStrong: `${theme.scheme.base.green}30`
     }
