@@ -1,0 +1,71 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: kompose convert
+    kompose.version: 1.26.0 (40646f47)
+  labels:
+    io.kompose.service: kanban-app
+  name: kanban-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: kanban-app
+  strategy: {}
+  template:
+    metadata:
+      annotations:
+        kompose.cmd: kompose convert
+        kompose.version: 1.26.0 (40646f47)
+      labels:
+        io.kompose.service: kanban-app
+    spec:
+      containers:
+        - env:
+            - name: DB_SERVER
+              valueFrom:
+                configMapKeyRef:
+                  name: cm-db
+                  key: server
+            - name: POSTGRES_DB
+              valueFrom:
+                secretKeyRef:
+                  name: secret-db
+                  key: db
+            - name: POSTGRES_USER
+              valueFrom:
+                secretKeyRef:
+                  name: secret-db
+                  key: user
+            - name: POSTGRES_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: secret-db
+                  key: password
+          image: garzelli95/devops-challenge-app:1.0.2
+          name: kanban-app
+          ports:
+            - containerPort: 8080
+          resources: {}
+      restartPolicy: Always
+status: {}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    kompose.cmd: kompose convert
+    kompose.version: 1.26.0 (40646f47)
+  labels:
+    io.kompose.service: kanban-app
+  name: kanban-app
+spec:
+  ports:
+    - name: "port-app"
+      port: 8080
+      targetPort: 8080
+  selector:
+    io.kompose.service: kanban-app
+status:
+  loadBalancer: {}

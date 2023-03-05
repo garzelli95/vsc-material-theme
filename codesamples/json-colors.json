@@ -1,0 +1,61 @@
+{
+    "colorUsage": [
+        {
+            "color": "white",
+            "usage": [
+                "variable",
+                "source"
+            ]
+        },
+        {
+            "color": "red",
+            "usage": [
+                "identifier",
+                "exception"
+            ]
+        },
+        {
+            "color": "green",
+            "usage": [
+                "string"
+            ]
+        },
+        {
+            "color": "blue",
+            "usage": [
+                "function",
+                "funcationCall"
+            ]
+        },
+        {
+            "color": "orange",
+            "usage": [
+                "boolean",
+                "number",
+                "constant"
+            ]
+        },
+        {
+            "color": "cyan",
+            "usage": [
+                "punctuation",
+                "keyword.operator"
+            ]
+        },
+        {
+            "color": "purple",
+            "usage": [
+                "type",
+                "keyword",
+                "storage"
+            ]
+        },
+        {
+            "color": "yellow",
+            "usage": [
+                "class",
+                "keyword.control"
+            ]
+        }
+    ]
+}
