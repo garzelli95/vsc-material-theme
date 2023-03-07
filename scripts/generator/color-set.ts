@@ -504,17 +504,17 @@ export const getColorSet = (theme: ThemeSetting): IColorSet => {
       */
       'sideBar.background': theme.scheme.backgroundAlt,
       'sideBar.foreground': theme.scheme.sidebarForeground,
-      'sideBar.border': `${theme.scheme.contrastBorder}60`,
+      'sideBar.border': `${theme.scheme.contrastBorder}`,
       /**
       * Sidebar elements style
       */
       'sideBarTitle.foreground': theme.scheme.foreground,
       'sideBarSectionHeader.background': theme.scheme.backgroundAlt,
-      'sideBarSectionHeader.border': `${theme.scheme.contrastBorder}60`,
+      'sideBarSectionHeader.border': `${theme.scheme.contrastBorder}`,
       /**
       * Window panels style (terminal, global search)
       */
-      'panel.border': `${theme.scheme.contrastBorder}60`,
+      'panel.border': `${theme.scheme.contrastBorder}`,
       'panel.background': theme.scheme.backgroundAlt,
       'panel.dropBackground': theme.scheme.foreground,
       /**
@@ -547,15 +547,15 @@ export const getColorSet = (theme: ThemeSetting): IColorSet => {
       /**
       * Activity bar style
       */
-      'activityBar.background': theme.scheme.backgroundAlt,
-      'activityBar.border': `${theme.scheme.contrastBorder}60`,
       'activityBar.foreground': theme.scheme.foreground,
+      'activityBar.background': theme.scheme.backgroundAlt,
+      'activityBar.border': `${theme.scheme.contrastBorder}`,
       'activityBar.activeBorder': theme.scheme.defaultAccent,
       /**
-      * Activity bar badges style
+      * Activity bar badges (e.g. number of changed files in version control)
       */
       'activityBarBadge.background': theme.scheme.defaultAccent,
-      'activityBarBadge.foreground': theme.scheme.base.black,
+      'activityBarBadge.foreground': theme.scheme.backgroundAlt,
       /**
       * Global badges style
       */
@@ -582,6 +582,7 @@ export const getColorSet = (theme: ThemeSetting): IColorSet => {
       'tab.inactiveBackground': theme.scheme.background,
       'tab.activeBackground': theme.scheme.background,
       'tab.unfocusedActiveForeground': theme.scheme.foreground,
+      'tab.unfocusedHoverBackground': `${theme.scheme.backgroundAlt}80`,
       'tab.border': theme.scheme.background,
       /**
       * Editor overlay widgets style (find/replace..)
@@ -598,15 +599,15 @@ export const getColorSet = (theme: ThemeSetting): IColorSet => {
       * Statusbar style
       */
       'statusBar.noFolderBackground': theme.scheme.background,
-      'statusBar.border': `${theme.scheme.contrastBorder}60`,
+      'statusBar.border': `${theme.scheme.contrastBorder}`,
       'statusBar.background': theme.scheme.backgroundAlt,
       'statusBar.foreground': theme.scheme.statusbarForeground,
-      'statusBar.debuggingBackground': theme.scheme.base.purple,
-      'statusBar.debuggingForeground': theme.scheme.base.white,
+      'statusBar.debuggingBackground': theme.scheme.base.orange,
+      'statusBar.debuggingForeground': theme.scheme.backgroundAlt,
       /**
       * Statusbar items style
       */
-      'statusBarItem.hoverBackground': `${theme.scheme.comments}20`,
+      'statusBarItem.hoverBackground': `${theme.scheme.background}80`,
       'statusBarItem.remoteForeground': theme.scheme.base.black,
       'statusBarItem.remoteBackground': theme.scheme.defaultAccent,
       /**
@@ -625,9 +626,9 @@ export const getColorSet = (theme: ThemeSetting): IColorSet => {
       /**
       * Squigglies style
       */
-      'editorInfo.foreground': `${theme.scheme.base.blue}70`,
-      'editorWarning.foreground': `${theme.scheme.base.yellow}70`,
-      'editorError.foreground': `${theme.scheme.base.red}70`,
+      'editorInfo.foreground': `${theme.scheme.base.blue}80`,
+      'editorWarning.foreground': `${theme.scheme.base.yellow}80`,
+      'editorError.foreground': `${theme.scheme.base.red}80`,
       /**
       * Popop dialogs style
       */
@@ -640,7 +641,7 @@ export const getColorSet = (theme: ThemeSetting): IColorSet => {
       'titleBar.activeForeground': theme.scheme.foreground,
       'titleBar.inactiveBackground': theme.scheme.backgroundAlt,
       'titleBar.inactiveForeground': theme.scheme.sidebarForeground,
-      'titleBar.border': `${theme.scheme.contrastBorder}60`,
+      'titleBar.border': `${theme.scheme.contrastBorder}`,
       /**
       * Textfield and inputs style
       */
@@ -668,8 +669,8 @@ export const getColorSet = (theme: ThemeSetting): IColorSet => {
       * Lists style
       */
       'list.hoverForeground': theme.scheme.listHoverForeground,
-      'list.hoverBackground': theme.scheme.backgroundAlt,
-      'list.activeSelectionBackground': theme.scheme.backgroundAlt,
+      'list.hoverBackground': theme.scheme.background,
+      'list.activeSelectionBackground': theme.scheme.background,
       'list.activeSelectionForeground': theme.scheme.defaultAccent,
       'list.inactiveSelectionForeground': theme.scheme.defaultAccent,
       'list.inactiveSelectionBackground': theme.scheme.inactiveSelectionBackground,
@@ -721,11 +722,11 @@ export const getColorSet = (theme: ThemeSetting): IColorSet => {
       'gitDecoration.conflictingResourceForeground': `${theme.scheme.base.yellow}`,
       'gitDecoration.modifiedResourceForeground': `${theme.scheme.base.blue}`,
       'gitDecoration.untrackedResourceForeground': `${theme.scheme.alt.emerald}`,
-      'gitDecoration.ignoredResourceForeground': `${theme.scheme.sidebarForeground}`,
+      'gitDecoration.ignoredResourceForeground': `${theme.scheme.comments}`,
       // Editor gutter
-      'editorGutter.modifiedBackground': `${theme.scheme.base.blue}60`,
-      'editorGutter.addedBackground': `${theme.scheme.alt.emerald}90`,
-      'editorGutter.deletedBackground': `${theme.scheme.base.red}60`,
+      'editorGutter.modifiedBackground': `${theme.scheme.base.blue}`,
+      'editorGutter.addedBackground': `${theme.scheme.alt.emerald}`,
+      'editorGutter.deletedBackground': `${theme.scheme.base.red}`,
       /**
       * Breadcrumb style
       */

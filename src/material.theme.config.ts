@@ -1,9 +1,9 @@
 import {
-  commands as Commands,
+  // Commands as Commands,
   ExtensionContext
 } from 'vscode';
 
-import * as ThemeCommands from './commands';
+// Import * as ThemeCommands from './commands';
 import {ReleaseNotesWebview} from './webviews/ReleaseNotes';
 import {changelogManager} from './core/changelog-manager';
 import {extensionManager} from './core/extension-manager';
@@ -19,6 +19,6 @@ export async function activate(context: ExtensionContext): Promise<void> {
   }
 
   // Registering commands
-  Commands.registerCommand('materialTheme.setAccent', ThemeCommands.setAccent);
-  Commands.registerCommand('materialTheme.showReleaseNotes', async () => releaseNotesView.show());
+  // Commands.registerCommand('materialTheme.setAccent', ThemeCommands.setAccent);
+  // Commands.registerCommand('materialTheme.showReleaseNotes', async () => releaseNotesView.show());
 }
