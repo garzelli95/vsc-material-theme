@@ -34,26 +34,37 @@ function contrast(foregroundColor: RGB, backgroundColor: RGB) {
     ((foregroundLuminance + 0.05) / (backgroundLuminance + 0.05));
 }
 
+function contrastOutcome(contrastRatio: number) {
+  let contrastOutcome = 'bad';
+  if (contrastRatio >= 7.0) {
+    contrastOutcome = 'AAA';
+  } else if (contrastRatio >= 4.5) {
+    contrastOutcome = 'AA';
+  } else if (contrastRatio >= 3.0) {
+    contrastOutcome = 'A';
+  }
+
+  return contrastOutcome;
+}
+
 function checkThemeContrast(theme: ThemeSetting) {
   const colorObj = {...theme.scheme.alt, ...theme.scheme.base};
   let color: keyof typeof colorObj;
 
+  console.log(`\n${theme.name} accessibility table:\n`);
+  console.log('| Foreground | vs Background | vs BackgroundAlt |');
+  console.log('| ---------- | ------------- | ---------------- |');
   for (color in colorObj) {
     if (Object.prototype.hasOwnProperty.call(colorObj, color)) {
       if (color !== 'black' && color !== 'white') {
         const foregroundRGB = getRgbColorFromHex(colorObj[color]);
         const backgroundRGB = getRgbColorFromHex(theme.scheme.background);
-        const contrastRatio = contrast(foregroundRGB, backgroundRGB);
-        let contrastOutcome = 'bad';
-        if (contrastRatio >= 7.0) {
-          contrastOutcome = 'AAA';
-        } else if (contrastRatio >= 4.5) {
-          contrastOutcome = 'AA';
-        } else if (contrastRatio >= 3.0) {
-          contrastOutcome = 'A';
-        }
+        const backgroundAltRGB = getRgbColorFromHex(theme.scheme.backgroundAlt);
 
-        console.log(`Contrast between ${color.padStart(7, ' ')} and background: ${contrastOutcome.padStart(3, ' ')}`);
+        const outcome = contrastOutcome(contrast(foregroundRGB, backgroundRGB));
+        const outcomeAlt = contrastOutcome(contrast(foregroundRGB, backgroundAltRGB));
+
+        console.log(`| ${color.padStart(10, ' ')} | ${outcome.padStart(13, ' ')} | ${outcomeAlt.padStart(16, ' ')} |`);
       }
     }
   }
@@ -84,4 +95,4 @@ const run = async (): Promise<void> => {
   }
 };
 
-run();
+void run();

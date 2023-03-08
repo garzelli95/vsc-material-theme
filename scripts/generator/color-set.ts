@@ -528,7 +528,7 @@ export const getColorSet = (theme: ThemeSetting): IColorSet => {
       */
       'editor.background': theme.scheme.background,
       'editor.foreground': theme.scheme.foreground,
-      'editor.lineHighlightBackground': `${theme.scheme.lineHighlight}50`,
+      'editor.lineHighlightBackground': theme.scheme.backgroundAlt,
       'editor.selectionHighlightBackground': `${theme.scheme.caret}20`,
       'editor.lineHighlightBorder': `${theme.scheme.lineHighlight}00`,
       'editor.findMatchBackground': theme.scheme.findMatchBackground,
@@ -598,12 +598,12 @@ export const getColorSet = (theme: ThemeSetting): IColorSet => {
       /**
       * Statusbar style
       */
-      'statusBar.noFolderBackground': theme.scheme.background,
       'statusBar.border': `${theme.scheme.contrastBorder}`,
-      'statusBar.background': theme.scheme.backgroundAlt,
       'statusBar.foreground': theme.scheme.statusbarForeground,
-      'statusBar.debuggingBackground': theme.scheme.base.orange,
+      'statusBar.background': theme.scheme.backgroundAlt,
       'statusBar.debuggingForeground': theme.scheme.backgroundAlt,
+      'statusBar.debuggingBackground': theme.scheme.base.yellow,
+      'statusBar.noFolderBackground': theme.scheme.background,
       /**
       * Statusbar items style
       */
@@ -786,13 +786,13 @@ export const getColorSet = (theme: ThemeSetting): IColorSet => {
       brightBlack: theme.scheme.comments,
       brightBlue: theme.scheme.base.blue,
       brightCyan: theme.scheme.base.cyan,
-      brightGreen: theme.scheme.base.green,
+      brightGreen: theme.scheme.alt.emerald,
       brightMagenta: theme.scheme.base.purple,
       brightRed: theme.scheme.base.red,
       brightWhite: theme.scheme.base.white,
       brightYellow: theme.scheme.base.yellow,
       cyan: theme.scheme.base.cyan,
-      green: theme.scheme.base.green,
+      green: theme.scheme.alt.emerald,
       magenta: theme.scheme.base.purple,
       red: theme.scheme.base.red,
       white: theme.scheme.base.white,

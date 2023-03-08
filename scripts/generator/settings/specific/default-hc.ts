@@ -3,7 +3,7 @@ export default {
   name: 'Custom-Material-Theme',
   type: 'dark',
   scheme: {
-    defaultAccent: '#5CC9FF',
+    defaultAccent: '#42C0FF',
     background: '#263238',
     backgroundAlt: '#192227',
     contrastBorder: '#192227',
@@ -36,7 +36,7 @@ export default {
       white: '#EEFFFF',
       red: '#F07178',
       green: '#C3E88D',
-      blue: '#5CC9FF',
+      blue: '#42C0FF',
       orange: '#F89272',
       cyan: '#89DDFF',
       purple: '#CA98EC',
