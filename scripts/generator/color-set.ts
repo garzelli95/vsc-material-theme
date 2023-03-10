@@ -3,14 +3,14 @@ import {ThemeSetting} from './types';
 
 export const getColorSet = (theme: ThemeSetting): IColorSet => {
   return {
-    semanticHighlighting: true,
+    semanticHighlighting: false,
     base: {
       // Determines the overall background color
       background: theme.scheme.background,
       // Determines boolean, identifier, keyword, storage, and cssClass
       color1: theme.scheme.base.purple,
       // Determines string, stringEscape, and cssId
-      color2: theme.scheme.base.green,
+      color2: theme.scheme.alt.lime,
       // Determines function, class, classMember, type, and cssTag
       color3: theme.scheme.base.blue,
       // Determines functionCall and number
@@ -30,14 +30,14 @@ export const getColorSet = (theme: ThemeSetting): IColorSet => {
       keyword: theme.scheme.base.purple,
       otherKeyword: theme.scheme.base.purple,
       storage: theme.scheme.base.purple,
-      identifier: theme.scheme.base.red,
-      classMember: theme.scheme.base.red,
+      identifier: theme.scheme.base.red, // Member access, blocks, YAML keys, ...
       class: theme.scheme.base.purple,
       type: theme.scheme.base.purple,
+      classMember: theme.scheme.base.blue,
       function: theme.scheme.base.blue,
       functionCall: theme.scheme.base.blue,
-      string: theme.scheme.base.green,
-      stringEscape: theme.scheme.alt.emerald,
+      string: theme.scheme.alt.lime,
+      stringEscape: theme.scheme.base.green,
       boolean: theme.scheme.base.orange,
       number: theme.scheme.base.orange,
       punctuation: theme.scheme.base.cyan,
@@ -54,7 +54,7 @@ export const getColorSet = (theme: ThemeSetting): IColorSet => {
           'constant.other.placeholder'
         ],
         settings: {
-          foreground: theme.scheme.alt.emerald
+          foreground: theme.scheme.base.green
           // == syntax.stringEscape,
         }
       },
@@ -140,11 +140,20 @@ export const getColorSet = (theme: ThemeSetting): IColorSet => {
         }
       },
       {
+        name: 'Blocks',
+        scope: [
+          'meta.block'
+        ],
+        settings: {
+          foreground: theme.scheme.foreground
+        }
+      },
+      {
         name: 'Go - Bold Functions and Type Definitions',
         scope: [
-          'entity.name.function.go',
-          'entity.name.class.go',
-          'entity.name.type.go'
+          'source.go entity.name.function.go',
+          'source.go entity.name.class.go',
+          'source.go entity.name.type.go'
         ],
         settings: {
           fontStyle: 'bold'
@@ -153,7 +162,7 @@ export const getColorSet = (theme: ThemeSetting): IColorSet => {
       {
         name: 'Java - Bold Classes',
         scope: [
-          'entity.name.type.class.java'
+          'source.java entity.name.type.class.java'
         ],
         settings: {
           fontStyle: 'bold'
@@ -162,7 +171,7 @@ export const getColorSet = (theme: ThemeSetting): IColorSet => {
       {
         name: 'Java - Purple Constructor Calls',
         scope: [
-          'meta.function-call.java entity.name.function'
+          'source.java meta.function-call.java entity.name.function'
         ],
         settings: {
           foreground: theme.scheme.base.purple
@@ -171,7 +180,7 @@ export const getColorSet = (theme: ThemeSetting): IColorSet => {
       {
         name: 'Java - this',
         scope: [
-          'variable.language.this.java'
+          'source.java variable.language.this.java'
         ],
         settings: {
           foreground: theme.scheme.base.red
@@ -180,7 +189,7 @@ export const getColorSet = (theme: ThemeSetting): IColorSet => {
       {
         name: 'Java - new',
         scope: [
-          'keyword.control.new.java'
+          'source.java keyword.control.new.java'
         ],
         settings: {
           foreground: theme.scheme.base.cyan
@@ -189,7 +198,7 @@ export const getColorSet = (theme: ThemeSetting): IColorSet => {
       {
         name: 'Python - Self Parameter',
         scope: [
-          'variable.parameter.function.language.special.self.python'
+          'source.python variable.parameter.function.language.special.self.python'
         ],
         settings: {
           foreground: theme.scheme.base.red,
@@ -199,18 +208,18 @@ export const getColorSet = (theme: ThemeSetting): IColorSet => {
       {
         name: 'Python - Format Placeholder',
         scope: [
-          'constant.character.format.placeholder.other.python'
+          'source.python constant.character.format.placeholder.other.python'
         ],
         settings: {
-          foreground: theme.scheme.alt.emerald
+          foreground: theme.scheme.base.green
         }
       },
       {
         name: 'Python - Function Call',
         scope: [
-          'meta.function-call.generic.python',
-          'meta.function-call.python',
-          'support.function.builtin.python'
+          'source.python meta.function-call.generic.python',
+          'source.python meta.function-call.python',
+          'source.python support.function.builtin.python'
         ],
         settings: {
           foreground: theme.scheme.base.blue
@@ -219,7 +228,7 @@ export const getColorSet = (theme: ThemeSetting): IColorSet => {
       {
         name: 'Python - Normal inside f-strings and function calls',
         scope: [
-          'meta.function-call.arguments.python'
+          'source.python meta.function-call.arguments.python'
         ],
         settings: {
           foreground: theme.scheme.foreground
@@ -228,7 +237,7 @@ export const getColorSet = (theme: ThemeSetting): IColorSet => {
       {
         name: 'Python - Special variables like __name__',
         scope: [
-          'support.variable.magic.python'
+          'source.python support.variable.magic.python'
         ],
         settings: {
           foreground: theme.scheme.base.orange
@@ -241,7 +250,7 @@ export const getColorSet = (theme: ThemeSetting): IColorSet => {
           'meta.command.shell variable.other.normal.shell'
         ],
         settings: {
-          foreground: theme.scheme.alt.emerald
+          foreground: theme.scheme.base.green
         }
       },
       {
@@ -362,7 +371,7 @@ export const getColorSet = (theme: ThemeSetting): IColorSet => {
           'markup.inserted'
         ],
         settings: {
-          foreground: theme.scheme.base.green
+          foreground: theme.scheme.alt.lime
         }
       },
       {
@@ -554,7 +563,7 @@ export const getColorSet = (theme: ThemeSetting): IColorSet => {
       /**
       * Activity bar badges (e.g. number of changed files in version control)
       */
-      'activityBarBadge.background': theme.scheme.defaultAccent,
+      'activityBarBadge.background': theme.scheme.secondaryAccent,
       'activityBarBadge.foreground': theme.scheme.backgroundAlt,
       /**
       * Global badges style
@@ -601,8 +610,8 @@ export const getColorSet = (theme: ThemeSetting): IColorSet => {
       'statusBar.border': `${theme.scheme.contrastBorder}`,
       'statusBar.foreground': theme.scheme.statusbarForeground,
       'statusBar.background': theme.scheme.backgroundAlt,
-      'statusBar.debuggingForeground': theme.scheme.backgroundAlt,
-      'statusBar.debuggingBackground': theme.scheme.base.yellow,
+      'statusBar.debuggingForeground': theme.scheme.base.black,
+      'statusBar.debuggingBackground': theme.scheme.secondaryAccent,
       'statusBar.noFolderBackground': theme.scheme.background,
       /**
       * Statusbar items style
@@ -613,22 +622,22 @@ export const getColorSet = (theme: ThemeSetting): IColorSet => {
       /**
       * Matching brackets style
       */
-      'editorBracketMatch.border': `${theme.scheme.caret}50`,
+      'editorBracketMatch.border': `${theme.scheme.caret}80`,
       'editorBracketMatch.background': theme.scheme.background,
       /**
       * Editor Overview Ruler style
       */
       'editorOverviewRuler.findMatchForeground': theme.scheme.defaultAccent,
       'editorOverviewRuler.border': theme.scheme.background,
-      'editorOverviewRuler.errorForeground': `${theme.scheme.base.red}40`,
-      'editorOverviewRuler.infoForeground': `${theme.scheme.base.blue}40`,
-      'editorOverviewRuler.warningForeground': `${theme.scheme.base.yellow}40`,
+      'editorOverviewRuler.errorForeground': `${theme.scheme.base.red}`,
+      'editorOverviewRuler.infoForeground': `${theme.scheme.base.blue}`,
+      'editorOverviewRuler.warningForeground': `${theme.scheme.base.yellow}`,
       /**
       * Squigglies style
       */
-      'editorInfo.foreground': `${theme.scheme.base.blue}80`,
-      'editorWarning.foreground': `${theme.scheme.base.yellow}80`,
-      'editorError.foreground': `${theme.scheme.base.red}80`,
+      'editorInfo.foreground': `${theme.scheme.base.blue}`,
+      'editorWarning.foreground': `${theme.scheme.base.yellow}`,
+      'editorError.foreground': `${theme.scheme.base.red}`,
       /**
       * Popop dialogs style
       */
@@ -696,12 +705,12 @@ export const getColorSet = (theme: ThemeSetting): IColorSet => {
       */
       'notifications.background': theme.scheme.background,
       'notifications.foreground': theme.scheme.foreground,
-      'notificationLink.foreground': theme.scheme.defaultAccent,
+      'notificationLink.foreground': theme.scheme.secondaryAccent,
       /**
       * Extensions button style
       */
-      'extensionButton.prominentBackground': `${theme.scheme.base.green}90`,
-      'extensionButton.prominentHoverBackground': theme.scheme.base.green,
+      'extensionButton.prominentBackground': `${theme.scheme.alt.lime}80`,
+      'extensionButton.prominentHoverBackground': theme.scheme.alt.lime,
       'extensionButton.prominentForeground': theme.scheme.base.black,
       /**
       * Peekview window style
@@ -711,21 +720,21 @@ export const getColorSet = (theme: ThemeSetting): IColorSet => {
       'peekViewTitle.background': `${theme.scheme.foreground}05`,
       'peekViewResult.background': `${theme.scheme.foreground}05`,
       'peekViewEditorGutter.background': `${theme.scheme.foreground}05`,
-      'peekViewTitleDescription.foreground': `${theme.scheme.foreground}60`,
+      'peekViewTitleDescription.foreground': `${theme.scheme.foreground}80`,
       'peekViewResult.matchHighlightBackground': theme.scheme.selection,
       'peekViewEditor.matchHighlightBackground': theme.scheme.selection,
-      'peekViewResult.selectionBackground': `${theme.scheme.sidebarForeground}70`,
+      'peekViewResult.selectionBackground': `${theme.scheme.sidebarForeground}80`,
       /**
       * GIT decorations style in sidebar or tab
       */
       'gitDecoration.deletedResourceForeground': `${theme.scheme.base.red}`,
-      'gitDecoration.conflictingResourceForeground': `${theme.scheme.base.yellow}`,
-      'gitDecoration.modifiedResourceForeground': `${theme.scheme.base.blue}`,
-      'gitDecoration.untrackedResourceForeground': `${theme.scheme.alt.emerald}`,
+      'gitDecoration.conflictingResourceForeground': `${theme.scheme.base.orange}`,
+      'gitDecoration.modifiedResourceForeground': `${theme.scheme.base.purple}`,
+      'gitDecoration.untrackedResourceForeground': `${theme.scheme.base.green}`,
       'gitDecoration.ignoredResourceForeground': `${theme.scheme.comments}`,
       // Editor gutter
-      'editorGutter.modifiedBackground': `${theme.scheme.base.blue}`,
-      'editorGutter.addedBackground': `${theme.scheme.alt.emerald}`,
+      'editorGutter.modifiedBackground': `${theme.scheme.base.purple}`,
+      'editorGutter.addedBackground': `${theme.scheme.base.green}`,
       'editorGutter.deletedBackground': `${theme.scheme.base.red}`,
       /**
       * Breadcrumb style
@@ -740,7 +749,7 @@ export const getColorSet = (theme: ThemeSetting): IColorSet => {
       */
       'menu.background': theme.scheme.background,
       'menu.foreground': theme.scheme.foreground,
-      'menu.selectionBackground': `${theme.scheme.lineHighlight}50`,
+      'menu.selectionBackground': `${theme.scheme.lineHighlight}80`,
       'menu.selectionForeground': theme.scheme.defaultAccent,
       'menu.selectionBorder': theme.scheme.inactiveSelectionBackground,
       'menu.separatorBackground': theme.scheme.foreground,
@@ -786,13 +795,13 @@ export const getColorSet = (theme: ThemeSetting): IColorSet => {
       brightBlack: theme.scheme.comments,
       brightBlue: theme.scheme.base.blue,
       brightCyan: theme.scheme.base.cyan,
-      brightGreen: theme.scheme.alt.emerald,
+      brightGreen: theme.scheme.base.green,
       brightMagenta: theme.scheme.base.purple,
       brightRed: theme.scheme.base.red,
       brightWhite: theme.scheme.base.white,
       brightYellow: theme.scheme.base.yellow,
       cyan: theme.scheme.base.cyan,
-      green: theme.scheme.alt.emerald,
+      green: theme.scheme.base.green,
       magenta: theme.scheme.base.purple,
       red: theme.scheme.base.red,
       white: theme.scheme.base.white,

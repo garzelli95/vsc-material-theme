@@ -4,6 +4,7 @@ export default {
   type: 'dark',
   scheme: {
     defaultAccent: '#42C0FF',
+    secondaryAccent: '#FFCB6B',
     background: '#263238',
     backgroundAlt: '#192227',
     contrastBorder: '#192227',
@@ -16,7 +17,7 @@ export default {
     focusBorder: '#FFFFFF',
     guides: '#37474F',
     lineNumbers: '#37474F',
-    lineHighlight: '#000000',
+    lineHighlight: '#192227',
     selection: '#80CBC420',
     shadow: '#00000030',
     inputBackground: '#303C41',
@@ -28,14 +29,14 @@ export default {
     listHoverForeground: '#FFFFFF',
     listHoverBackground: '#263238',
     tabActiveForeground: '#FFFFFF',
-    inactiveSelectionBackground: '#00000030',
+    inactiveSelectionBackground: '#192227',
     findMatchBackground: '#000000',
     findMatchHighlightBackground: '#00000050',
     findMatchHighlightBorder: '#FFFFFF50',
     base: {
       white: '#EEFFFF',
       red: '#F07178',
-      green: '#C3E88D',
+      green: '#17D995',
       blue: '#42C0FF',
       orange: '#F89272',
       cyan: '#89DDFF',
@@ -44,10 +45,10 @@ export default {
       black: '#000000'
     },
     alt: {
-      emerald: '#17D995',
-      pink: '#FFA3C3',
       teal: '#5EB9C5',
-      forest: '#1AC1A0'
+      forest: '#1AC1A0',
+      pink: '#FFA3C3',
+      lime: '#C3E88D'
     }
   }
 };

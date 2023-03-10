@@ -5,6 +5,7 @@ export type ThemeSetting = {
   type: string;
   scheme: {
     defaultAccent: string;
+    secondaryAccent: string;
     background: string;
     backgroundAlt: string;
     contrastBorder: string;
@@ -34,27 +35,22 @@ export type ThemeSetting = {
     findMatchHighlightBorder: string;
     base: {
       white: string;
-      black: string;
       red: string;
-      orange: string;
-      yellow: string;
       green: string;
-      cyan: string;
       blue: string;
-      paleblue: string;
+      orange: string;
+      cyan: string;
+      yellow: string;
       purple: string;
-      brown: string;
-      pink: string;
-      violet: string;
-      teal: string;
+      black: string;
     };
     alt: {
       teal: string;
       green: string;
-      turquoise: string;
       emerald: string;
       forest: string;
       pink: string;
+      lime: string;
     };
   };
 };
